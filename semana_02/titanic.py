@@ -13,12 +13,13 @@ from sklearn.tree import plot_tree
 df = sns.load_dataset("titanic")
 df
 # %%
-df['alive'].replace({'yes':1,'no':0},inplace=True)
-df['alone'].replace({True:1,False:0},inplace=True)
+def replaceToBinary():
+    df['alive'].replace({'yes':1,'no':0},inplace=True)
+    df['alone'].replace({True:1,False:0},inplace=True)
 # %%
-
-df['deck'].fillna('D', inplace=True)
-df['age'].fillna(df['age'].median(), inplace=True)
+def nanData():
+    df['deck'].fillna('D', inplace=True)
+    df['age'].fillna(df['age'].median(), inplace=True)
 # %%
 df
 # %%
@@ -34,14 +35,12 @@ preprocessor = ColumnTransformer(
         ('cat', OneHotEncoder(handle_unknown='ignore'), categorical)
     ])
 # %%
+
 knn = Pipeline(steps=[('preprocessor', preprocessor),
                       ('classifier', KNeighborsClassifier(n_neighbors=5))])
-
 tree = Pipeline(steps=[('preprocessor', preprocessor),
                        ('classifier', DecisionTreeClassifier(max_depth=5, random_state=42))])
-
 # %%
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # %%
