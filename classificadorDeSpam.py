@@ -5,8 +5,9 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv('data/spam.csv', encoding='latin-1')
 df
 # %%
-df = df[['v1', 'v2']]
-df.columns = ['label', 'message']
+def clean_df():
+    df = df[['v1', 'v2']]
+    df.columns = ['label', 'message']
 # %%
 df['label'] = df['label'].map({'ham':0, 'spam':1})
 # %%
