@@ -45,4 +45,3 @@ plt.title('Confusion Matrix')
 plt.show()
 
 # Observa-se que o modelo obteve uma alta acurácia na classificação de mensagens consideradas como SPAM
-# %%
